@@ -21,10 +21,12 @@
             top: 60vh;
             width: 80vw;
             height: 33vh;
+            appearance: none;
+            -webkit-appearance: none;
             background-color: burlywood;
             border-width: 1px;
             border-color: burlywood;
-            opacity: 50%;
+            opacity: 0.5;
         }
     </style>
 </head>
@@ -37,6 +39,29 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const msgBox = document.getElementById('msgBox');
+
+function preventScroll(e) {
+    e.preventDefault();
+}
+
+function resizeCanvas() {
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = Math.floor(window.innerWidth * dpr);
+    canvas.height = Math.floor(window.innerHeight * dpr);
+    canvas.style.width = window.innerWidth + 'px';
+    canvas.style.height = window.innerHeight + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+
+window.addEventListener('load', () => {
+    document.removeEventListener('touchmove', preventScroll, { passive: false });
+    document.removeEventListener('wheel', preventScroll, { passive: false });
+    resizeCanvas();
+});
+
+window.addEventListener('resize', () => {
+    resizeCanvas();
+});
 
     </script>
 </body>
