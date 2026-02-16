@@ -26,6 +26,14 @@
             opacity: 0.5;
         }
 
+        .page {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
         @media (min-aspect-ratio: 3/4) {  /* 横長のディスプレイ */
             #canvas {
                 position: absolute;
@@ -41,6 +49,38 @@
                 top: 60vh;
                 width: calc(100vh * 4 / 3 * 0.8);
                 height: 30vh;
+            }
+
+            #home1 {
+                position: absolute;
+                left: calc((100vw - (100vh * 4 / 3)) / 2 + (100vh * 4 / 3 * 0.1));
+                top: 10vh;
+                width: calc(100vh * 4 / 3 * 0.5);
+                height: 10vh;
+            }
+
+            #home2 {
+                position: absolute;
+                left: calc((100vw - (100vh * 4 / 3)) / 2 + (100vh * 4 / 3 * 0.1));
+                top: 22vh;
+                width: calc(100vh * 4 / 3 * 0.5);
+                height: 10vh;
+            }
+
+            #home3 {
+                position: absolute;
+                left: calc((100vw - (100vh * 4 / 3)) / 2 + (100vh * 4 / 3 * 0.1));
+                top: 34vh;
+                width: calc(100vh * 4 / 3 * 0.5);
+                height: 10vh;
+            }
+
+            #home4 {
+                position: absolute;
+                left: calc((100vw - (100vh * 4 / 3)) / 2 + (100vh * 4 / 3 * 0.1));
+                top: 46vh;
+                width: calc(100vh * 4 / 3 * 0.5);
+                height: 10vh;
             }
         }
 
@@ -67,11 +107,32 @@
 <body>
     <canvas id="canvas"></canvas>
     <button id="msgBox"></button>
+    <div id="home" class="page active">
+        <button id="home1">はじめから (1)</button>
+        <button id="home2">つづきから (2)</button>
+        <button id="home3">設定 (3)</button>
+        <button id="home4">遊び方 (4)</button>
+    </div>
     <script>
 
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const msgBox = document.getElementById('msgBox');
+let page;
+
+function draw() {
+    switch(page) {
+        case 'home':
+            msgBox.textContent = "何をやりたいですか"
+            break;
+    }
+}
+
+function changePage(pageId) {
+    document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
+    document.getElementById(pageId).classList.add('active');
+    page = pageId;
+}
 
 function preventScroll(e) {
     e.preventDefault();
@@ -88,6 +149,7 @@ function resizeCanvas() {
 window.addEventListener('load', () => {
     document.addEventListener('touchmove', preventScroll, { passive: false });
     document.addEventListener('wheel', preventScroll, { passive: false });
+    changePage('home');
     resizeCanvas();
 });
 
