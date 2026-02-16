@@ -100,6 +100,38 @@
                 width: 80vw;
                 height: calc(100vw * 3 / 4 * 0.3);
             }
+
+            #home1 {
+                position: absolute;
+                left: 10vw;
+                top: calc((100vh - (100vw * 3 / 4)) / 2 + (100vw * 3 / 4 * 0.1));
+                width: 50vw;
+                height: calc(100vw * 3 / 4 * 0.1);
+            }
+
+            #home2 {
+                position: absolute;
+                left: 10vw;
+                top: calc((100vh - (100vw * 3 / 4)) / 2 + (100vw * 3 / 4 * 0.22));
+                width: 50vw;
+                height: calc(100vw * 3 / 4 * 0.1);
+            }
+
+            #home3 {
+                position: absolute;
+                left: 10vw;
+                top: calc((100vh - (100vw * 3 / 4)) / 2 + (100vw * 3 / 4 * 0.34));
+                width: 50vw;
+                height: calc(100vw * 3 / 4 * 0.1);
+            }
+
+            #home4 {
+                position: absolute;
+                left: 10vw;
+                top: calc((100vh - (100vw * 3 / 4)) / 2 + (100vw * 3 / 4 * 0.46));
+                width: 50vw;
+                height: calc(100vw * 3 / 4 * 0.1);
+            }
         }
     </style>
 </head>
@@ -132,6 +164,7 @@ function changePage(pageId) {
     document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
     document.getElementById(pageId).classList.add('active');
     page = pageId;
+    draw();
 }
 
 function preventScroll(e) {
@@ -144,6 +177,7 @@ function resizeCanvas() {
     canvas.width  = Math.round(rect.width  * dpr);
     canvas.height = Math.round(rect.height * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    draw();
 }
 
 window.addEventListener('load', () => {
