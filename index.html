@@ -26,6 +26,22 @@
             opacity: 0.5;
         }
 
+        #player1 {
+            background-color: blue;
+        }
+
+        #player2 {
+            background-color: red;
+        }
+
+        #player3 {
+            background-color: yellow;
+        }
+
+        #player4 {
+            background-color: green;
+        }
+
         .page {
             display: none;
         }
@@ -51,7 +67,7 @@
                 height: 30vh;
             }
 
-            #home1 {
+            #home1, #player1 {
                 position: absolute;
                 left: calc((100vw - (100vh * 4 / 3)) / 2 + (100vh * 4 / 3 * 0.1));
                 top: 10vh;
@@ -59,7 +75,7 @@
                 height: 10vh;
             }
 
-            #home2 {
+            #home2, #player2 {
                 position: absolute;
                 left: calc((100vw - (100vh * 4 / 3)) / 2 + (100vh * 4 / 3 * 0.1));
                 top: 22vh;
@@ -67,7 +83,7 @@
                 height: 10vh;
             }
 
-            #home3 {
+            #home3, #player3 {
                 position: absolute;
                 left: calc((100vw - (100vh * 4 / 3)) / 2 + (100vh * 4 / 3 * 0.1));
                 top: 34vh;
@@ -75,11 +91,19 @@
                 height: 10vh;
             }
 
-            #home4 {
+            #home4, #player4 {
                 position: absolute;
                 left: calc((100vw - (100vh * 4 / 3)) / 2 + (100vh * 4 / 3 * 0.1));
                 top: 46vh;
                 width: calc(100vh * 4 / 3 * 0.5);
+                height: 10vh;
+            }
+
+            #yourPlayer {
+                position: absolute;
+                left: calc((100vw - (100vh * 4 / 3)) / 2 + (100vh * 4 / 3 * 0.7));
+                top: 46vh;
+                width: calc(100vh * 4 / 3 * 0.2);
                 height: 10vh;
             }
         }
@@ -101,7 +125,7 @@
                 height: calc(100vw * 3 / 4 * 0.3);
             }
 
-            #home1 {
+            #home1, #player1 {
                 position: absolute;
                 left: 10vw;
                 top: calc((100vh - (100vw * 3 / 4)) / 2 + (100vw * 3 / 4 * 0.1));
@@ -109,7 +133,7 @@
                 height: calc(100vw * 3 / 4 * 0.1);
             }
 
-            #home2 {
+            #home2, #player2 {
                 position: absolute;
                 left: 10vw;
                 top: calc((100vh - (100vw * 3 / 4)) / 2 + (100vw * 3 / 4 * 0.22));
@@ -117,7 +141,7 @@
                 height: calc(100vw * 3 / 4 * 0.1);
             }
 
-            #home3 {
+            #home3, #player3 {
                 position: absolute;
                 left: 10vw;
                 top: calc((100vh - (100vw * 3 / 4)) / 2 + (100vw * 3 / 4 * 0.34));
@@ -125,11 +149,19 @@
                 height: calc(100vw * 3 / 4 * 0.1);
             }
 
-            #home4 {
+            #home4, #player4 {
                 position: absolute;
                 left: 10vw;
                 top: calc((100vh - (100vw * 3 / 4)) / 2 + (100vw * 3 / 4 * 0.46));
                 width: 50vw;
+                height: calc(100vw * 3 / 4 * 0.1);
+            }
+
+            #yourPlayer {
+                position: absolute;
+                left: 70vw;
+                top: calc((100vh - (100vw * 3 / 4)) / 2 + (100vw * 3 / 4 * 0.46));
+                width: 20vw;
                 height: calc(100vw * 3 / 4 * 0.1);
             }
         }
@@ -139,8 +171,21 @@
 <body>
     <canvas id="canvas"></canvas>
     <button id="msgBox"></button>
+    <div id="createPlayer" class="page">
+        <input id="player1" type="text" maxlength="5">
+        <input id="player2" type="text" maxlength="5">
+        <input id="player3" type="text" maxlength="5">
+        <input id="player4" type="text" maxlength="5">
+        <select id="yourPlayer">
+            <option value="0">-あなたの電車は-</option>
+            <option value="1">青色</option>
+            <option value="2">赤色</option>
+            <option value="3">黄色</option>
+            <option value="4">緑色</option>
+        </select>
+    </div>
     <div id="home" class="page active">
-        <button id="home1">はじめから (1)</button>
+        <button id="home1" onclick="changePage('createPlayer')">はじめから (1)</button>
         <button id="home2">つづきから (2)</button>
         <button id="home3">設定 (3)</button>
         <button id="home4">遊び方 (4)</button>
