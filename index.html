@@ -28,18 +28,22 @@
 
         #player1 {
             background-color: blue;
+            box-sizing: border-box;
         }
 
         #player2 {
             background-color: red;
+            box-sizing: border-box;
         }
 
         #player3 {
             background-color: yellow;
+            box-sizing: border-box;
         }
 
         #player4 {
             background-color: green;
+            box-sizing: border-box;
         }
 
         .page {
@@ -192,15 +196,38 @@
     </div>
     <script>
 
+class Player {
+    constructor() {
+        this.name = '';
+    }
+}
+
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const msgBox = document.getElementById('msgBox');
 let page;
+let player = [new Player(), new Player(), new Player(), new Player()];
+let yours;
 
 function draw() {
     switch(page) {
         case 'home':
-            msgBox.textContent = "何をやりたいですか"
+            msgBox.textContent = "何をやりたいですか";
+            break;
+        case 'createPlayer':
+            msgBox.textContent = "社長さんの名前とあなたの汽車を設定してください";
+            msgBox.onclick = function() {
+                const player1 = document.getElementById('player1');
+                const player2 = document.getElementById('player2');
+                const player3 = document.getElementById('player3');
+                const player4 = document.getElementById('player4');
+                const yourPlayer = document.getElementById('yourPlayer');
+                player[0].name = player1.value;
+                player[1].name = player2.value;
+                player[2].name = player3.value;
+                player[3].name = player4.value;
+                yours = yourPlayer.value * 1;
+            }
             break;
     }
 }
